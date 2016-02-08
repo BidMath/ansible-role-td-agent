@@ -1,5 +1,4 @@
-# Define a custom version of the package to install; if none provided, the
-# default package from vars/[OS-family].yml will be used.
+# Define a custom version of the package to install.
 # To get a list of available package versions visit: http://packages.treasure-data.com
 #
 # Example:
