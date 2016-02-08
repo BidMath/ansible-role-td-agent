@@ -1,4 +1,7 @@
 ---
+- name: Install the libselinux-python package
+  yum: name=libselinux-python state=installed
+
 - name: Add TreasureData repository
   template:
     src: treasuredata.repo.j2
