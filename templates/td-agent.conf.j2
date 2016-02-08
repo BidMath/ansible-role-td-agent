@@ -7,8 +7,8 @@
 </source>
 
 # HTTP input
-# POST http://localhost:8888/<tag>?json=<json>
-# POST http://localhost:8888/td.myapp.login?json={"user"%3A"me"}
+# POST http://localhost:{{ td_agent_http_forward_port }}/<tag>?json=<json>
+# POST http://localhost:{{ td_agent_http_forward_port }}/td.myapp.login?json={"user"%3A"me"}
 <source>
   type http
   port {{ td_agent_http_forward_port }}
@@ -39,5 +39,4 @@
 {% for config in td_agent_configuration %}
 # {{ config.name }}
 {{ config.content }}
-
 {% endfor %}
