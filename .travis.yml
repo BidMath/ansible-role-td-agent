@@ -1,16 +1,13 @@
 ---
 language: python
 python: "2.7"
+sudo: required
 
 env:
-  - SITE=test.yml
+  - PLAYBOOK=test.yml
 
 before_install:
   - sudo apt-get update -qq
-
-  # Remove pre-existing Redis installation.
-  - sudo apt-get remove -y --purge redis-server
-  - sudo rm -rf /etc/redis
 
 install:
   # Install Ansible.
@@ -21,23 +18,23 @@ install:
 
 script:
   # Check the role/playbook's syntax.
-  - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
+  - "ansible-playbook -i test/inventory test/$PLAYBOOK --syntax-check"
 
   # Run the role/playbook with ansible-playbook.
-  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo"
+  - "ansible-playbook -i test/inventory test/$PLAYBOOK --connection=local --sudo"
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
-    ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo
+    ansible-playbook -i test/inventory test/$PLAYBOOK --connection=local --sudo
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Make sure Redis is running, and can be stopped and started cleanly.
-  - sudo service redis-server status
-  - sudo service redis-server stop
-  - sudo service redis-server start
+  - sudo service td-agent status
+  - sudo service td-agent stop
+  - sudo service td-agent start
 
 after_failure:
-  - sudo cat /var/log/redis/redis-server.log
-  - sudo cat /etc/redis/redis.conf
+  - sudo cat /var/log/td-agent/td-agent.log
+  - sudo cat /etc/td-agent/td-agent.conf
