@@ -1,0 +1,15 @@
+---
+- name: Install apt key for TreasureData repository
+  apt_key:
+    url: http://packages.treasuredata.com/GPG-KEY-td-agent
+
+- name: Add TreasureData repository
+  apt_repository:
+    repo: "{{ __td_repository[ansible_distribution_release] }}"
+    state: present
+
+- name: Install td-agent package
+  apt:
+    name: "td-agent={{ td_agent_version }}*"
+    update_cache: yes
+    state: installed

@@ -1,0 +1,64 @@
+# Define a custom version of the package to install; if none provided, the
+# default package from vars/[OS-family].yml will be used.
+# To get a list of available package versions visit: http://packages.treasure-data.com
+#
+# Example:
+#
+#   td_agent_version: 2.2.1
+#   td_agent_version: 2.3.0
+#
+td_agent_version: 2.3.0
+
+
+# http://docs.fluentd.org/articles/config-file
+td_agent_tcp_forward_port: 24224
+td_agent_http_forward_port: 9880
+
+# Fluentd has a monitoring agent to retrieve internal metrics in JSON via HTTP.
+# http://docs.fluentd.org/articles/monitoring
+td_agent_monitor_agent_enabled: yes
+td_agent_monitor_agent_bind: 0.0.0.0
+td_agent_monitor_agent_port: 24220
+
+# http://docs.fluentd.org/articles/monitoring#debug-port
+td_agent_debug_agent_enabled: no
+td_agent_debug_agent_bind: 0.0.0.0
+td_agent_debug_agent_port: 24230
+
+# A list of objects that describe your fluent plugin dependencies
+# Find your plugins here: http://www.fluentd.org/plugins
+#
+# Example:
+#
+#     td_agent_plugins:
+#       - { name: fluent-plugin-google-cloud, version: 0.4.14 }
+#       - name: fluent-plugin-secure-forward
+#         version: 0.3.2
+#
+td_agent_plugins: []
+
+
+# A list of multiline strings with source and match blocks
+# http://docs.fluentd.org/articles/config-file
+#
+#    td_agent_configuration:
+#      - name: "Add host name to my access log"
+#        content: |
+#          <filter myapp.access>
+#            @type record_transformer
+#            <record>
+#              host_param "#{Socket.gethostname}"
+#            </record>
+#          </filter>
+#
+#      - name: "Access log of my app"
+#        content: |
+#          <match myapp.access>
+#            @type file
+#            path /var/log/fluent/access
+#          </match>
+#
+#       - name: "Alternatively you can use lookups to include longer configurations"
+#         content: {{ lookup('files', 'my-td-agent.conf') }}
+#
+td_agent_configuration: []

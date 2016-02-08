@@ -1,0 +1,8 @@
+---
+__td_repository:
+    trusty: "deb [arch=amd64] http://packages.treasuredata.com/2/ubuntu/trusty/ trusty contrib"
+    precise: "deb http://packages.treasuredata.com/2/ubuntu/precise/ precise contrib"
+    lucid: "deb http://packages.treasuredata.com/2/ubuntu/lucid/ lucid contrib"
+    jessie: "deb http://packages.treasuredata.com/2/debian/jessie/ jessie contrib"
+    wheezy: "deb http://packages.treasuredata.com/2/debian/wheezy/ wheezy contrib"
+    squeeze: "deb http://packages.treasuredata.com/2/debian/squeeze/ squeeze contrib"

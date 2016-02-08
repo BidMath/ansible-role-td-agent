@@ -1,0 +1,12 @@
+---
+# Rubygems 2.2.1 has a bug with processing < and <= in gemspecs which is fixed in
+# 2.4.8. https://github.com/treasure-data/omnibus-td-agent/pull/62
+- name: Check version of td-agent-gem
+  command: /usr/sbin/td-agent-gem --version
+  register: td_agent_gem_version
+  changed_when: false
+
+- name: Update rubygems version of td-agent from 2.2.1 to 2.4.8
+  command: /usr/sbin/td-agent-gem update --system 2.4.8
+  when: "{{ td_agent_gem_version.stdout | version_compare('2.4.8', '<') }}"
+

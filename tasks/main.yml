@@ -1,0 +1,35 @@
+---
+# Variable setup
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+# Setup/install tasks
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+# Run patches
+- include: rubygems-2.4.8-patch.yml
+
+- name: Ensure td-agent is configured
+  template:
+    src: td-agent.conf.j2
+    dest: /etc/td-agent/td-agent.conf
+    mode: 0644
+  notify: restart td-agent
+
+- name: Install td-agent plugins
+  gem:
+    name: "{{ item.name }}"
+    version: "{{ item.version | default('') }}"
+    executable: /usr/sbin/td-agent-gem
+    state: present
+    user_install: no
+  with_items: "{{ td_agent_plugins | list }}"
+  notify: restart td-agent
+
+- name: Start and enable td-agent
+  service: name=td-agent state=started enabled=true
+

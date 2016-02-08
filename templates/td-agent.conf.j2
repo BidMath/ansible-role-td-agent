@@ -1,0 +1,43 @@
+# Source descriptions:
+
+## built-in TCP input
+<source>
+  type forward
+  port {{ td_agent_tcp_forward_port }}
+</source>
+
+# HTTP input
+# POST http://localhost:8888/<tag>?json=<json>
+# POST http://localhost:8888/td.myapp.login?json={"user"%3A"me"}
+<source>
+  type http
+  port {{ td_agent_http_forward_port }}
+</source>
+
+{% if td_agent_monitor_agent_enabled %}
+# Fluentd has a monitoring agent to retrieve internal metrics in JSON via HTTP.
+# http://docs.fluentd.org/articles/monitoring
+<source>
+  type monitor_agent
+  bind {{ td_agent_monitor_agent_bind }}
+  port {{ td_agent_monitor_agent_port }}
+</source>
+{% endif %}
+
+{% if td_agent_debug_agent_enabled %}
+# http://docs.fluentd.org/articles/monitoring#debug-port
+<source>
+  type debug_agent
+  bind {{ td_agent_debug_agent_bind }}
+  port {{ td_agent_debug_agent_port }}
+</source>
+{% endif %}
+
+## ------------------------------------- >8 ------------------------------------
+## Custom configurations
+
+{% for config in td_agent_configuration %}
+# {{ config.name }}
+{{ config.content }}
+
+{% endfor %}

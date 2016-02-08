@@ -1,0 +1,14 @@
+---
+- name: Add TreasureData repository
+  template:
+    src: treasuredata.repo.j2
+    dest: /etc/yum.repos.d/td.repo
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Install td-agent package
+  yum:
+    name: "td-agent-{{ td_agent_version }}*"
+    state: installed
+    enablerepo: treasuredata

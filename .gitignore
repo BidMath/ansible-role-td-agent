@@ -1,0 +1,4 @@
+ansible.cfg
+Vagrantfile
+.vagrant
+test/vagrant.yml
