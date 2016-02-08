@@ -18,6 +18,9 @@ galaxy_info:
     versions:
     - all
   categories:
-    - monitoring
-    - td-agent
-    - fluentd
+    - "monitoring"
+    - "treasuredata"
+    - "treasure data"
+    - "td-agent"
+    - "fluentd"
+    - "logging"

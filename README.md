@@ -1,6 +1,9 @@
 # Ansible Role: td-agent
 
 [![Build Status](https://travis-ci.org/trekdemo/ansible-role-td-agent.svg?branch=master)](https://travis-ci.org/trekdemo/ansible-role-td-agent)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-apt-blue.svg)](https://galaxy.ansible.com/trekdemo/td-agent/)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-yum-blue.svg)](https://galaxy.ansible.com/trekdemo/td-agent/)
+[![MIT](https://img.shields.io/dub/l/vibe-d.svg)]()
 
 Installs td-agent on RedHat/CentOS or Debian/Ubuntu linux servers.
 
