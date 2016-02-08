@@ -1,0 +1,23 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: trekdemo
+  description: td-agent for RHEL/CentOS and Debian/Ubuntu
+  license: "MIT"
+  min_ansible_version: 1.4
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  categories:
+    - monitoring
+    - td-agent
+    - fluentd
