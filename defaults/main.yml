@@ -5,9 +5,10 @@
 #
 #   td_agent_version: 2.2.1
 #   td_agent_version: 2.3.0
+#   td_agent_version: 2.3
+#   td_agent_version: 2
 #
-td_agent_version: 2.3.0
-
+td_agent_version: 2
 
 # http://docs.fluentd.org/articles/config-file
 td_agent_tcp_forward_port: 24224
